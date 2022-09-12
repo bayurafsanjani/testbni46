@@ -31,16 +31,14 @@ Get your client key and server key from [Menu - Applications](https://digitalser
 Create API client object
 
 ```javascript
-const { BNIClient } = require('bni-nodejs');
-// Create Core API instance
-const client = new BNIClient({
-  prod: false,
-  clientId: '{your-client-id}',
-  clientSecret: '{your-client-secret}',
-  apiKey: '{your-api-key}',
-  apiSecret: '{your-api-secret}',
-  appName: '{your-app-name}'
-});
+  const { BNIClient } = require('bni-nodejs');
+  // Create Core API instance
+  public $prod;
+    public $appName;
+    public $clientId;
+    public $clientSecret;
+    public $apiKey;
+    public $apiSecret;});
 ```
 
 ### 2.2.A One Gate Payment
@@ -188,167 +186,163 @@ https://{BNIServer}:{port}/H2H/v2/holdamountrelease?access_token=(your_token)
 
 Create `One Gate Payment` class object
 ```javascript
-
-const { BNIClient, SnapBI } = require('bni-nodejs');
-
 // Create Client instance
-const client = new BNIClient({
-  prod: false,
-  clientId: '{your-client-id}',
-  clientSecret: '{your-client-secret}',
-  apiKey: '{your-api-key}',
-  apiSecret: '{your-api-secret}',
-  appName: '{your-app-name}'
-});
-
-const snap = new SnapBI(client, { 
-  privateKeyPath: '{your-rsa-private-key-path}', 
-  channelId: '{your-channel-id}' 
-});
+{
+X-SIGNATURE: (your_signature)
+X-TIMESTAMP: (timedate_
+X-CLIENT-KEY: (your_clientkey)
+{
+ "grantType": "client_credentials",
+ "additionalInfo": {}
+}
+}
 ```
 
 Available methods for `Snap BI` class
 #### Balance Inquiry
 ```javascript
 // return as Promise of Object
-const balanceInquiry = await snap.balanceInquiry({
-  partnerReferenceNo: '202010290000000000002', // optional
-  accountNo: '0115476117'
+ "partnerReferenceNo": "(partnerReferenceNo)",
+ "accountNo": "(accountnumber)"
+}
 });
 ```
 
 #### Bank Statement
 ```javascript
 // return as Promise of Object
-const bankStatement = await snap.bankStatement({
-  partnerReferenceNo: '202010290000000000002', // optional
-  accountNo: '0115476117',
-  fromDateTime: '2010-01-01T12:08:56+07:00', // optional
-  toDateTime: '2011-01-01T12:08:56+07:00' // optional
+{
+ "partnerReferenceNo": "(partnerReferenceNo)",
+ "accountNo": "(accountNo)",
+ "fromDateTime": "(datetime)",
+ "toDateTime": "(dataetime)"
+}
 });
 ```
 
 #### Internal Account Inquiry
 ```javascript
 // return as Promise of Object
-const internalAccountInquiry = await snap.internalAccountInquiry({
-  partnerReferenceNo: '2020102900000000000001', // optional
-  beneficiaryAccountNo: '0115476151'
+ "partnerReferenceNo": "(partnerReferenceNo)",
+ "beneficiaryAccountNo": "(beneficiaryAccountNo)"
 });
 ```
 
 #### Transaction Status Inquiry
 ```javascript
 // return as Promise of Object
-const transactionStatusInquiry = await snap.transactionStatusInquiry({
-  originalPartnerReferenceNo: '20211213100434', // optional
-  originalReferenceNo: '20211220141520', // transaction reference number
-  originalExternalId: '20211220141520', // optional
-  serviceCode: '36', // SNAP BI service code
-  transactionDate: '2021-12-20',
-  amount: {
-    value: '12500',
-    currency: 'IDR'
-  },
-  additionalInfo: {
-    deviceId: '123456', // optinal
-    channel: 'mobilephone' // optinal
-  }
-});
+{
+{
+"originalPartnerReferenceNo": "(originalPartnerReferenceNo)",
+ "originalReferenceNo": "(originalReferenceNo)",
+ "originalExternalId": "(originalExternalId)",
+ "serviceCode": "(serviceCode)",
+ "transactionDate": "",
+ "amount": {
+ "value": "(value)",
+ "currency": "IDR",
+ },
+ "additionalInfo": {
+ "deviceId": "(iddevice",
+ "channel": "mobilephone"
+ }
+}
 ```
 
 #### Transfer Intra Bank
 ```javascript
 // return as Promise of Object
-const transferIntraBank = await snap.transferIntraBank({
-  partnerReferenceNo: '202201911020300006', // transaction reference number
-  amount: {
-    value: '12500',
-    currency: 'IDR'
-  },
-  beneficiaryAccountNo: '0115476117',
-  beneficiaryEmail: 'mail@example.com', // optional
-  currency: 'IDR', // optional
-  customerReference: '14045', // optional
-  feeType: 'OUR', // OUR: fee will be paid by sender (default), BEN: fee will be paid by beneficary, SHA: fee divided
-  remark: '', // optional
-  sourceAccountNo: '0115476151',
-  transactionDate: '2021-12-13',
-  additionalInfo: {
-    deviceId: '123456', // optinal
-    channel: 'mobilephone' // optinal
-  }
-});
+{
+ "partnerReferenceNo": "(partnerReferenceNo)",
+ "amount": {
+ "value": "(value)",
+ "currency": "IDR"
+ },
+ "beneficiaryAccountNo": "(beneficiaryAccountNo)",
+ "beneficiaryEmail": "",
+ "currency": "IDR",
+ "customerReference": "14045",
+ "feeType": "",
+ "remark": "Already One Year",
+ "sourceAccountNo": "(sourceAccountNo)",
+ "transactionDate": "(date)",
+ "additionalInfo": {
+ "deviceId": "(iddevice)",
+ "channel": "mobilephone"
+ }
+}
+
 ```
 
 #### Transfer RTGS
 ```javascript
 // return as Promise of Object
-const transferRTGS = await snap.transferRTGS({
-  partnerReferenceNo: '202201911020300011', // transaction reference number
-  amount: {
-    value: '150005001',
-    currency: 'IDR'
-  },
-  beneficiaryAccountName: 'SAN',
-  beneficiaryAccountNo: '"3333333333',
-  beneficiaryAccountAddress: 'Jakarta Barat', // optional
-  beneficiaryBankCode: 'CENAIDJA',
-  beneficiaryBankName: 'PT. BANK CENTRAL ASIA Tbk.', // optional
-  beneficiaryCustomerResidence: '1',
-  beneficiaryCustomerType: '1',
-  beneficiaryEmail: 'mail@example.com', // optional
-  currency: 'IDR', // optional
-  customerReference: '202201911020300006',
-  feeType: 'OUR', // OUR: fee will be paid by sender (default), BEN: fee will be paid by beneficary, SHA: fee divided
-  kodePos: '12550', // optional
-  recieverPhone: '08123456789', // optional
-  remark: '', // optional
-  senderCustomerResidence: '1', // optional
-  senderCustomerType: '1', // optional
-  senderPhone: '08123456789', // optional
-  sourceAccountNo: '0115476151',
-  transactionDate: '2022-01-25',
-  additionalInfo: {
-    deviceId: '123456', // optinal
-    channel: 'mobilephone' // optinal
-  }
-});
+const transferRTGS = await snap.transferRTGS{
+ "partnerReferenceNo": "202201911020300011",
+ "amount": {
+ "value": "150005001",
+ "currency": "IDR"
+ },
+ "beneficiaryAccountName": "(accountname)",
+ "beneficiaryAccountNo": "(accountno)",
+ "beneficiaryAddress": "(Andress)",
+ "beneficiaryBankCode": "(bankcode)",
+ "beneficiaryBankName": "(bankname)",
+ "beneficiaryCustomerResidence": "1",
+ "beneficiaryCustomerType": "1",
+ "beneficiaryEmail": "",
+ "currency": "IDR",
+ "customerReference": "(customerReference)",
+ "feeType": "OUR",
+ "kodepos": "(poscode)",
+ "recieverPhone": "",
+ "remark": "Already One Year",
+ "senderCustomerResidence": "1",
+ "senderCustomerType": "1",
+ "senderPhone": "",
+ "sourceAccountNo": "(sourceAccountNo)",
+ "transactionDate": "(transactionDate)",
+ "additionalInfo": {
+ "deviceId": "(iddevice)",
+ "channel": "mobilephone"
+ }
+}
+
 ```
 
 #### Transfer SKNBI
 ```javascript
 // return as Promise of Object
-const transferSKNBI = await snap.transferSKNBI({
-  partnerReferenceNo: '202201911020300012', // transaction reference number
-  amount: {
-    value: '150005001',
-    currency: 'IDR'
-  },
-  beneficiaryAccountName: 'SAN',
-  beneficiaryAccountNo: '3333333333',
-  beneficiaryAddress: 'Jakarta Barat', // optional
-  beneficiaryBankCode: '0140397',
-  beneficiaryBankName: 'PT. BANK CENTRAL ASIA Tbk.', // optional
-  beneficiaryCustomerResidence: '1',
-  beneficiaryCustomerType: '1',
-  beneficiaryEmail: 'mail@example.com', // optional
-  currency: 'IDR', // optional
-  customerReference: '202201911020300006',
-  feeType: 'OUR', // OUR: fee will be paid by sender (default), BEN: fee will be paid by beneficary, SHA: fee divided
-  kodePos: '12550', // optional
-  recieverPhone: '08123456789', // optional
-  remark: '', // optional
-  senderCustomerResidence: '1', // optional
-  senderCustomerType: '1', // optional
-  senderPhone: '08123456789', // optional
-  sourceAccountNo: '0115476151',
-  transactionDate: '2022-01-25',
-  additionalInfo: {
-    deviceId: '123456', // optinal
-    channel: 'mobilephone' // optinal
-  }
-});
+const transferSKNBI = await snap.transferSKNBI{
+ "partnerReferenceNo": "(partnerReferenceNo)",
+ "amount": {
+ "value": "(value)",
+ "currency": "IDR"
+ },
+ "beneficiaryAccountName": "(accountname",
+ "beneficiaryAccountNo": "(acccountno)",
+ "beneficiaryAddress": "(address)",
+ "beneficiaryBankCode": "(bankcode)",
+ "beneficiaryBankName": "(bankname)",
+ "beneficiaryCustomerResidence": "1",
+ "beneficiaryCustomerType": "1",
+ "beneficiaryEmail": "",
+ "currency": "IDR",
+ "customerReference": "(customerReference)",
+ "feeType": "OUR",
+ "kodepos": "(poscode)",
+ "recieverPhone": "",
+ "remark": "Already One Year",
+ "senderCustomerResidence": "1",
+ "senderCustomerType": "1",
+ "senderPhone": "",
+ "sourceAccountNo": "(sourceAccountNo)"
+ "transactionDate": "(transactionDate)",
+ "additionalInfo": {
+ "deviceId": "(iddevice)",
+ "channel": "mobilephone"
+ }
+}
 ```
 
 #### External Account Inquiry
@@ -368,28 +362,28 @@ const externalAccountInquiry = await snap.externalAccountInquiry({
 #### Transfer Inter Bank
 ```javascript
 // return as Promise of Object
-const transferInterBank = await snap.transferInterBank({
-  partnerReferenceNo: '2020102900000000000001', // transaction reference number
-  amount: {
-    value: '12345678',
-    currency: 'IDR'
-  },
-  beneficiaryAccountName: 'Yories Yolanda',
-  beneficiaryAccountNo: '888801000003301',
-  beneficiaryAddress: 'Palembang', // optional
-  beneficiaryBankCode: '002',
-  beneficiaryBankName: 'Bank BRI', // optional
-  beneficiaryEmail: 'mail@example.com', // optional
-  currency: 'IDR', // optional
-  customerReference: '10052019', // optional
-  sourceAccountNo: '888801000157508',
-  transactionDate: '2019-07-03T12:08:56+07:00',
-  feeType: 'OUR', // OUR: fee will be paid by sender (default), BEN: fee will be paid by beneficary, SHA: fee divided
-  additionalInfo: {
-    deviceId: '123456', // optinal
-    channel: 'mobilephone' // optinal
-  }
-});
+{
+ "partnerReferenceNo": "(partnerReferenceNo)",
+ "amount": {
+ "value": "(value)",
+ "currency": "IDR"
+ },
+ "beneficiaryAccountName": "(AccountName)",
+ "beneficiaryAccountNo": "(AccountNo)",
+ "beneficiaryAddress": "(Address)",
+ "beneficiaryBankCode": "(bankcode)",
+ "beneficiaryBankName": "(bankname)",
+ "beneficiaryEmail": "(email)",
+ "currency": "IDR",
+ "customerReference": "(customerReference)",
+ "sourceAccountNo": "(sourceAccountNo)",
+ "transactionDate": "(transactionDate)",
+ "feeType": "OUR",
+ "additionalInfo": {
+ "deviceId": "(iddevice)
+ "channel": "mobilephone"
+ }
+}
 
 ```
 
