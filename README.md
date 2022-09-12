@@ -9,7 +9,7 @@ Please visit [Digital Services](https://digitalservices.bni.co.id/en/) for more 
 download Composer [download](https://getcomposer.org/download/) and run command line
 
 ```
-composer require bni/sdk --dev 
+composer require composer require bni-api/bni-php-client
 ```
 
 ### 1.2 Manual Installation
@@ -166,6 +166,12 @@ $bni = new Bni(
             '{your-client-secret}',
             '{your-client-id}'
         );
+//snap bi
+        $snap = new SnapBI(
+            $bni,
+            storage_path('private.key'),
+            '95051'
+        );     
 ```
 
 Available methods for `Snap BI` class
