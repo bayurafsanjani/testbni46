@@ -166,12 +166,12 @@ $bni = new Bni(
             '{your-client-secret}',
             '{your-client-id}'
         );
-//snap bi
-        $snap = new SnapBI(
-            $bni,
-            storage_path('private.key'),
-            '95051'
-        );     
+//snap 
+bi$snap = new SnapBI(
+            $bni = '{instance-of-bn-class}',
+            $pathPrivateKey = '{your-path-private-key}',
+            $chanel = '{your-chanel}'
+        );         
 ```
 
 Available methods for `Snap BI` class
