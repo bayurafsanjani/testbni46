@@ -43,12 +43,12 @@ Create API client object
 ### 2.2.A One Gate Payment
 
 Create `One Gate Payment` class object
-```javascript
+```php
 
 
 
 // Create Client instance
-const client = new BNIClient({
+  const client = new BNIClient({
   prod: false,
   clientId: '{your-client-id}',
   clientSecret: '{your-client-secret}',
