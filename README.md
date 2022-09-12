@@ -73,83 +73,72 @@ return $ogp->getInHouseInquiry('115471119');
 
 #### Do Payment
 ```php
-
 return $ogp->doPayment(
-            '20170227000000000020',
-            '0',
-            '113183203',
-            '115471119',
-            '20170227000000000',
-            'IDR',
-            100500,
-            '?',
-            '',
-            'Mr.X',
-            'Jakarta',
-            '',
-            'CENAIDJAXXX',
-            'OUR'
-        );
+'20170227000000000020',
+'0',
+'113183203',
+'115471119',
+'20170227000000000',
+'IDR',
+100500,
+'?',
+'',
+'Mr.X',
+'Jakarta',
+'',
+'CENAIDJAXXX',
+'OUR'
+);
 ```
 
 #### Get Payment Status
 ```php
-dd($bni->getToken());
-        $ogp = new OneGatePayment($bni);
 return $ogp->getPaymentStatus('20170227000000000020');
 ```
 
 #### Get Inter Bank Inquiry
 ```php
-dd($bni->getToken());
-        $ogp = new OneGatePayment($bni);
 return $ogp->getInterBankInquiry(
-            '20180930112233003',
-            '0115476117',
-            '014',
-            '01400000'
-        );
+'20180930112233003',
+'0115476117',
+'014',
+'01400000'
+);
 ```
 
 #### Get Inter Bank Payment
 ```php
-dd($bni->getToken());
-        $ogp = new OneGatePayment($bni);
 return $ogp->getInterBankPayment(
-            '20180930112233005',
-            12007,
-            '01400000',
-            'Bpk HANS',
-            '014',
-            'BCA',
-            '0316031099',
-            '100000000097'
-        );
+'20180930112233005',
+12007,
+'01400000',
+'Bpk HANS',
+'014',
+'BCA',
+'0316031099',
+'100000000097'
+);
 ```
 
 #### Hold Amount
 ```php
-dd($bni->getToken());
-        $ogp = new OneGatePayment($bni);
 return $ogp->holdAmount(
-            '20181001112233009',
-            12007,
-            '0115476151',
-            'testHold'
+'20181001112233009',
+12007,
+'0115476151',
+'testHold'
         );
 ```
 
 #### Hold Amount Release
 ```php
-dd($bni->getToken());
-        $ogp = new OneGatePayment($bni);
-        return $ogp->holdAmountRelease(
-            '20181001112233010',
-            12007,
-            '0115476151',
-            '657364',
-            '31052010'
-        );
+return $ogp->holdAmountRelease(
+ '20181001112233010',
+ 12007,
+ '0115476151',
+ '657364',
+ '31052010'
+ );
 ```
 
 ### 2.2.B Snap BI
@@ -158,18 +147,18 @@ Create `One Gate Payment` class object
 ```php
 //snap
 $bni = new Bni(
-            false,
-            '{your-app-name}',
-            '{your-api-secret}',
-            '{your-api-key}',
-            '{your-client-secret}',
-            '{your-client-id}'
+  false,
+  '{your-app-name}',
+  '{your-api-secret}',
+  '{your-api-key}',
+  '{your-client-secret}',
+  '{your-client-id}'
         );
 //snap 
 bi$snap = new SnapBI(
-            $bni = '{instance-of-bn-class}',
-            $pathPrivateKey = '{your-path-private-key}',
-            $chanel = '{your-chanel}'
+  $bni = '{instance-of-bn-class}',
+  $pathPrivateKey = '{your-path-private-key}',
+  $chanel = '{your-chanel}'
         );         
 ```
 
@@ -178,7 +167,7 @@ Available methods for `Snap BI` class
 ```php
 $token = $snap->balanceInquiry(
 '202010290000000000002',
- '0115476117'
+'0115476117'
  );
 ```
 
