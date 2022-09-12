@@ -5,23 +5,19 @@ Please visit [Digital Services](https://digitalservices.bni.co.id/en/) for more 
 
 ## 1. Installation
 
-### 1.1 Using NPM
+### 1.1 Using COMPOSER
 
 ```
-npm install --save bni-nodejs
+composer require bni/sdk --dev //contoh
 ```
 
 ### 1.2 Manual Installation
 
-If you are not using NPM, you can clone or [download](https://github.com/bni-api/bni-nodejs/archive/refs/heads/main.zip) this repository.
-Then require from `index.js` file.
+If you are not using GIT, you can clone or [download](https://github.com/bni-api/bni-nodejs/archive/refs/heads/main.zip) this repository.
 
-```javascript
-const { BNIClient } = require('bni-nodejs');
-```
 
 ## 2. Usage
-
+  
 ### 2.1 Choose an API Product
 
 We have 2 API products you can use:
@@ -71,72 +67,82 @@ Available methods for `One Gate Payment` class
 #### Get Balance
 ```javascript
 // return as Promise of Object
-const getBalance = await ogp.getBalance({
-  accountNo: '113183203'
-});
+{	
+"clientId" : "IDBNI" + BASE64(clientName),
+"signature" :"[SIGNATURE]",
+"accountNo" : "115471119"
+}
 ```
 
 #### Get In House Inquiry
 ```javascript
 // return as Promise of Object
-const getInHouseInquiry = await ogp.getInHouseInquiry({
-  accountNo: '113183203'
-});
+{   
+"clientId" : "IDBNI" + BASE64(clientName),
+"signature" :"[SIGNATURE]",
+"accountNo" : "115471119"
+}
 ```
 
 #### Do Payment
 ```javascript
 // return as Promise of Object
-const doPayment = await ogp.doPayment({
-  customerReferenceNumber: '20170227000000000020', // max 20 char client defined reference number
-  paymentMethod: '0', // 0: In-house (intra BNI), 1: RTGS transfer, 2: Kliring transfer
-  debitAccountNo: '113183203',
-  creditAccountNo: '115471119',
-  valueDate: '20170227000000000',
-  valueCurrency: 'IDR',
-  valueAmount: '100500',
-  remark: '', // optional
-  beneficiaryEmailAddress: 'mail@example.com', // optional
-  beneficiaryName: 'Mr. X', // optional max 50 char (mandatory if paymentMethod 1 / 2)
-  beneficiaryAddress1: 'Jakarta', // optional max 50 char (mandatory if paymentMethod 1 / 2)
-  beneficiaryAddress2: '', // optional max 50 char
-  destinationBankCode: '', // optional (mandatory if paymentMethod 1 / 2)
-  chargingModelId: 'OUR' // OUR: fee will be paid by sender (default), BEN: fee will be paid by beneficary, SHA: fee divided
-});
+{      
+"clientId" : "IDBNI" + BASE64(clientName),
+"signature" : "[SIGNATURE]",
+"customerReferenceNumber" : "20170227000000000020",
+"paymentMethod" : "0",
+"debitAccountNo" : "113183203",
+"creditAccountNo" : "115471119",
+"valueDate" : "20170227000000000",
+"valueCurrency" : "IDR",
+"valueAmount" : "100500",
+"remark" : "?",
+"beneficiaryEmailAddress":"",
+"beneficiaryName":"Mr.X",
+"beneficiaryAddress1":"Jakarta",
+"beneficiaryAddress2":"",
+"destinationBankCode":"CENAIDJAXXX",
+"chargingModelId":"OUR" 
+}
 ```
 
 #### Get Payment Status
 ```javascript
 // return as Promise of Object
-const getPaymentStatus = await ogp.getPaymentStatus({
-  customerReferenceNumber: '20170227000000000020' // max 20 char client defined reference number
-});
+{
+"clientId": "IDBNI" + BASE64(clientName),
+"signature": "[SIGNATURE]",
+"customerReferenceNumber": "20170227000000000020"
+}
 ```
 
 #### Get Inter Bank Inquiry
 ```javascript
-// return as Promise of Object
-const getInterBankInquiry = await ogp.getInterBankInquiry({
-  customerReferenceNumber: '20170227000000000021', // max 20 char client defined reference number
-  accountNum: '113183203',
-  destinationBankCode: '014',
-  destinationAccountNum: '3333333333'
-});
+{
+"clientId": "IDBNI" + BASE64(clientName),
+"signature": "[SIGNATURE]",
+"customerReferenceNumber": "20170227000000000021",
+"accountNum": "113183203",
+"destinationBankCode": "014",
+"destinationAccountNum": "3333333333"
+}
 ```
 
 #### Get Inter Bank Payment
 ```javascript
-// return as Promise of Object
-const getInterBankPayment = await ogp.getInterBankPayment({
-  customerReferenceNumber: '20170227000000000021', // max 20 char client defined reference number
-  amount: '100500',
-  destinationAccountNum: '3333333333',
-  destinationAccountName: 'BENEFICIARY NAME 1 UNTIL HERE1BENEFICIARY NAME 2(OPT) UNTIL HERE2',
-  destinationBankCode: '014',
-  destinationBankName: 'BCA',
-  accountNum: '115471119',
-  retrievalReffNum: '100000000024' // refference number for Interbank Transaction
-});
+{
+"clientId": "IDBNI" + BASE64(clientName),
+"signature": "[SIGNATURE]",
+"customerReferenceNumber": "20170227000000000021",
+"amount": "10000",
+"destinationAccountNum": "3333333333",
+"destinationAccountName": "BENEFICIARY NAME 1 UNTIL HERE1BENEFICIARY NAME 2(OPT) UNTIL HERE2",
+"destinationBankCode": "014",
+"destinationBankName": "BCA",
+"accountNum": "115471119",
+"retrievalReffNum": "100000000024"
+}
 ```
 
 #### Hold Amount
@@ -152,14 +158,14 @@ const holdAmount = await ogp.holdAmount({
 
 #### Hold Amount Release
 ```javascript
-// return as Promise of Object
-const holdAmountRelease = await ogp.holdAmountRelease({
-  customerReferenceNumber: '20170504153218296', // max 20 char client defined reference number
-  amount: '12007',
-  accountNo: '0115476151',
-  bankReference: '513668', // journal number. you can get this value from hold amount response
-  holdTransactionDate: '31052010' // the date when you do the hold transaction
-});
+{
+"clientId": "IDBNI" + BASE64(clientName),
+"signature":"M4+FEsYOQluwIldqTqRti6oK3EhtGcTtrQZVtNrNZHxGz71kzXBoRCVgGuT8rq/jSE7c/sUXnSl/lqOPSvechI6HX1RpatHudd5mmLe2kcX38a2jg3L46dDuKC92cVrRmuPdvpOIH24J/gsNjrHHsgN3eEq8tmwKxQhgTkoZ4+Y=",
+"customerReferenceNumber": "20170504153218296",
+"amount": 12007,
+"accountNo": "0115476151",
+"detail": "testHold"
+}
 ```
 
 ### 2.2.B Snap BI
