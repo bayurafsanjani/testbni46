@@ -82,19 +82,19 @@ https://{BNIServer}:{port}/H2H/v2/dopayment?access_token=(your_token)
 {      
 "clientId" : "IDBNI" + BASE64(clientName),
 "signature" : "[SIGNATURE]",
-"customerReferenceNumber" : "20170227000000000020",
+"customerReferenceNumber" : "(customerReferenceNumber)",
 "paymentMethod" : "0",
-"debitAccountNo" : "113183203",
-"creditAccountNo" : "115471119",
-"valueDate" : "20170227000000000",
-"valueCurrency" : "IDR",
-"valueAmount" : "100500",
+"debitAccountNo" : "(debitAccountNo)",
+"creditAccountNo" : "(creditAccountNo)",
+"valueDate" : "(valueDate)",
+"valueCurrency" : "(valueCurrency)",
+"valueAmount" : "(valueAmount)",
 "remark" : "?",
 "beneficiaryEmailAddress":"",
-"beneficiaryName":"Mr.X",
-"beneficiaryAddress1":"Jakarta",
+"beneficiaryName":"(beneficiaryName)",
+"beneficiaryAddress1":"(Address1)",
 "beneficiaryAddress2":"",
-"destinationBankCode":"CENAIDJAXXX",
+"destinationBankCode":"(destinationBankCode)",
 "chargingModelId":"OUR" 
 }
 ```
@@ -105,7 +105,7 @@ https://{BNIServer}:{port}/H2H/v2/getpaymentstatus?access_token=(Your_token)
 {
 "clientId": "IDBNI" + BASE64(clientName),
 "signature": "[SIGNATURE]",
-"customerReferenceNumber": "20170227000000000020"
+"customerReferenceNumber": "(customerReferenceNumber)"
 }
 ```
 
@@ -115,10 +115,10 @@ https://{BNIServer}:{port}/H2H/v2/getinterbankinquiry?access_token=(your_token)
 {
 "clientId": "IDBNI" + BASE64(clientName),
 "signature": "[SIGNATURE]",
-"customerReferenceNumber": "20170227000000000021",
-"accountNum": "113183203",
-"destinationBankCode": "014",
-"destinationAccountNum": "3333333333"
+"customerReferenceNumber": "(customerReferenceNumber)",
+"accountNum": "(accountNum)",
+"destinationBankCode": "(BankCode)",
+"destinationAccountNum": "(destinationAccountNum)"
 }
 ```
 
@@ -128,14 +128,14 @@ https://{BNIServer}:{port}/H2H/v2/getinterbankpayment?access_token=(your_token)
 {
 "clientId": "IDBNI" + BASE64(clientName),
 "signature": "[SIGNATURE]",
-"customerReferenceNumber": "20170227000000000021",
-"amount": "10000",
-"destinationAccountNum": "3333333333",
-"destinationAccountName": "BENEFICIARY NAME 1 UNTIL HERE1BENEFICIARY NAME 2(OPT) UNTIL HERE2",
-"destinationBankCode": "014",
-"destinationBankName": "BCA",
-"accountNum": "115471119",
-"retrievalReffNum": "100000000024"
+"customerReferenceNumber": "(customerReferenceNumber)",
+"amount": "(amount)",
+"destinationAccountNum": "(destinationAccountNum)",
+"destinationAccountName": "(destinationAccountName)",
+"destinationBankCode": "(bankcode)",
+"destinationBankName": "(bankname)",
+"accountNum": "(accountNum)",
+"retrievalReffNum": "(retrievalReffNum)"
 }
 ```
 
@@ -145,14 +145,14 @@ https://{BNIServer}:{port}/H2H/v2/holdamount?access_token=(your_token)
 {
 "clientId": "IDBNI" + BASE64(clientName),
 "signature": "[SIGNATURE]",
-"customerReferenceNumber": "20170227000000000021",
-"amount": "10000",
-"destinationAccountNum": "3333333333",
-"destinationAccountName": "BENEFICIARY NAME 1 UNTIL HERE1BENEFICIARY NAME 2(OPT) UNTIL HERE2",
-"destinationBankCode": "014",
-"destinationBankName": "BCA",
-"accountNum": "115471119",
-"retrievalReffNum": "100000000024"
+"customerReferenceNumber": "(customerReferenceNumber)",
+"amount": "(amount)",
+"destinationAccountNum": "(destinationAccountNum)",
+"destinationAccountName": "(destinationAccountName)",
+"destinationBankCode": "(destinationBankCode)",
+"destinationBankName": "(destinationBankName)",
+"accountNum": "(accountNum)",
+"retrievalReffNum": "(retrievalReffNum)"
 }
 ```
 
@@ -163,11 +163,11 @@ https://{BNIServer}:{port}/H2H/v2/holdamountrelease?access_token=(your_token)
 {
 "clientId": "IDBNI" + BASE64(clientName),
 "signature": "M4+FEsYOQluwIldqTqRti6oK3EhtGcTtrQZVtNrNZHxGz71kzXBoRCVgGuT8rq/jSE7c/sUXnSl/lqOPSvechI6HX1RpatHudd5mmLe2kcX38a2jg3L46dDuKC92cVrRmuPdvpOIH24J/gsNjrHHsgN3eEq8tmwKxQhgTkoZ4+Y=",
-"customerReferenceNumber": "20170504153218298",
-"amount": 12007,
-"accountNo": "0115476151",
-"bankReference": "513668",
-"holdTransactionDate": "31052010"
+"customerReferenceNumber": "(customerReferenceNumber)",
+"amount": (amount),
+"accountNo": "(accountNo)",
+"bankReference": "(bankReference)",
+"holdTransactionDate": "(holdTransactionDate)"
 }
 ```
 
@@ -261,7 +261,7 @@ Available methods for `Snap BI` class
 ```php
 {{
 {
- "partnerReferenceNo": "202201911020300011",
+ "partnerReferenceNo": "(partnerReferenceNo)",
  "amount": {
  "value": "150005001",
  "currency": "IDR"
