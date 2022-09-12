@@ -70,7 +70,6 @@ private function init()
 Available methods for `One Gate Payment` class
 #### Get Balance
 ```php
-https://{BNIServer}:{port}/H2H/v2/getbalance?access_token=(Your_token)
 {	
 "clientId" : "IDBNI" + BASE64(clientName),
 "signature" :"[SIGNATURE]",
@@ -80,7 +79,6 @@ https://{BNIServer}:{port}/H2H/v2/getbalance?access_token=(Your_token)
 
 #### Get In House Inquiry
 ```php
-https://{BNIServer}:{port}/H2H/v2/getinhouseinquiry?access_token=(Your_token)
 {   
 "clientId" : "IDBNI" + BASE64(clientName),
 "signature" :"[SIGNATURE]",
@@ -90,7 +88,6 @@ https://{BNIServer}:{port}/H2H/v2/getinhouseinquiry?access_token=(Your_token)
 
 #### Do Payment
 ```php
-https://{BNIServer}:{port}/H2H/v2/dopayment?access_token=(your_token)
 {      
 "clientId" : "IDBNI" + BASE64(clientName),
 "signature" : "[SIGNATURE]",
@@ -113,7 +110,6 @@ https://{BNIServer}:{port}/H2H/v2/dopayment?access_token=(your_token)
 
 #### Get Payment Status
 ```php
-https://{BNIServer}:{port}/H2H/v2/getpaymentstatus?access_token=(Your_token)
 {
 "clientId": "IDBNI" + BASE64(clientName),
 "signature": "[SIGNATURE]",
@@ -123,7 +119,6 @@ https://{BNIServer}:{port}/H2H/v2/getpaymentstatus?access_token=(Your_token)
 
 #### Get Inter Bank Inquiry
 ```php
-https://{BNIServer}:{port}/H2H/v2/getinterbankinquiry?access_token=(your_token)
 {
 "clientId": "IDBNI" + BASE64(clientName),
 "signature": "[SIGNATURE]",
@@ -136,7 +131,6 @@ https://{BNIServer}:{port}/H2H/v2/getinterbankinquiry?access_token=(your_token)
 
 #### Get Inter Bank Payment
 ```php
-https://{BNIServer}:{port}/H2H/v2/getinterbankpayment?access_token=(your_token)
 {
 "clientId": "IDBNI" + BASE64(clientName),
 "signature": "[SIGNATURE]",
@@ -153,7 +147,6 @@ https://{BNIServer}:{port}/H2H/v2/getinterbankpayment?access_token=(your_token)
 
 #### Hold Amount
 ```php
-https://{BNIServer}:{port}/H2H/v2/holdamount?access_token=(your_token)
 {
 "clientId": "IDBNI" + BASE64(clientName),
 "signature": "[SIGNATURE]",
@@ -170,7 +163,6 @@ https://{BNIServer}:{port}/H2H/v2/holdamount?access_token=(your_token)
 
 #### Hold Amount Release
 ```php
-https://{BNIServer}:{port}/H2H/v2/holdamountrelease?access_token=(your_token)
 {
 {
 "clientId": "IDBNI" + BASE64(clientName),
@@ -189,7 +181,7 @@ Create `One Gate Payment` class object
 ```php
 {
 X-SIGNATURE: (your_signature)
-X-TIMESTAMP: (timedate_
+X-TIMESTAMP: (timedate)
 X-CLIENT-KEY: (your_clientkey)
 {
  "grantType": "client_credentials",
