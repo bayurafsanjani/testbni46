@@ -39,7 +39,7 @@ $bni = new Bni(
 '{your-api-key}',
 '{your-client-secret}',
 '{your-client-id}'
-        );
+);
 ```
 
 ### 2.2.A One Gate Payment
