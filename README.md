@@ -33,12 +33,12 @@ Create API client object
 
 ```php
 $bni = new Bni(
-            false,
-            '{your-app-name}',
-            '{your-api-secret}',
-            '{your-api-key}',
-            '{your-client-secret}',
-            '{your-client-id}'
+  false,
+'{your-app-name}',
+'{your-api-secret}',
+'{your-api-key}',
+'{your-client-secret}',
+'{your-client-id}'
         );
 ```
 
@@ -47,34 +47,33 @@ $bni = new Bni(
 Create `One Gate Payment` class object
 ```php
 $bni = new Bni(
-            false,
-            '{your-app-name}',
-            '{your-api-secret}',
-            '{your-api-key}',
-            '{your-client-secret}',
-            '{your-client-id}'
-        );
+  false,
+'{your-app-name}',
+'{your-api-secret}',
+'{your-api-key}',
+'{your-client-secret}',
+'{your-client-id}'
+);
+dd($bni->getToken());
+        $ogp = new OneGatePayment($bni);
 ```
 
 Available methods for `One Gate Payment` class
 #### Get Balance
 ```php
-dd($bni->getToken());
-        $ogp = new OneGatePayment($bni);
-        return $ogp->getBalance('115471119');
+$ogp = new OneGatePayment($bni);
+return $ogp->getBalance('115471119');
 ```
 
 #### Get In House Inquiry
 ```php
-dd($bni->getToken());
-        $ogp = new OneGatePayment($bni);
+$ogp = new OneGatePayment($bni);
 return $ogp->getInHouseInquiry('115471119');
 ```
 
 #### Do Payment
 ```php
-dd($bni->getToken());
-        $ogp = new OneGatePayment($bni);
+
 return $ogp->doPayment(
             '20170227000000000020',
             '0',
