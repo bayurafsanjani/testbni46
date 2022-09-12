@@ -32,40 +32,28 @@ Get your client key and server key from [Menu - Applications](https://digitalser
 Create API client object
 
 ```php
-{
-private function init()
-    {
-        return new Bni(
+$bni = new Bni(
             false,
-            'Test Wawat', <!-- appName -->
-            '',<!-- apiSecret -->
-            '',<!-- apiKey -->
-            '',<!--  clientSecret -->
-            ''<!--  clientId -->
+            '{your-app-name}',
+            '{your-api-secret}',
+            '{your-api-key}',
+            '{your-client-secret}',
+            '{your-client-id}'
         );
-    }
-
-}
 ```
 
 ### 2.2.A One Gate Payment
 
 Create `One Gate Payment` class object
 ```php
-{
-private function init()
-    {
-        return new Bni(
+$bni = new Bni(
             false,
-            'Test Wawat', <!-- appName -->
-            'ff19bcb7-3a15-4d0b-97b1-f36f9cf9bdb2',<!-- apiSecret -->
-            'd227997a-3525-442d-b80e-2ab2e7d908f0',<!-- apiKey -->
-            '98c4277f-866d-46b0-ba83-d3e0e37e667e',<!--  clientSecret -->
-            'b3b58219-8a88-401f-89c0-f2dc5bb7ce21'<!--  clientId -->
+            '{your-app-name}',
+            '{your-api-secret}',
+            '{your-api-key}',
+            '{your-client-secret}',
+            '{your-client-id}'
         );
-    }
-
-}
 ```
 
 Available methods for `One Gate Payment` class
@@ -74,8 +62,20 @@ Available methods for `One Gate Payment` class
 dd($bni->getToken());
         $ogp = new OneGatePayment($bni);
         return $ogp->getBalance('115471119');
-        return $ogp->getInHouseInquiry('115471119');
-        return $ogp->doPayment(
+```
+
+#### Get In House Inquiry
+```php
+dd($bni->getToken());
+        $ogp = new OneGatePayment($bni);
+return $ogp->getInHouseInquiry('115471119');
+```
+
+#### Do Payment
+```php
+dd($bni->getToken());
+        $ogp = new OneGatePayment($bni);
+return $ogp->doPayment(
             '20170227000000000020',
             '0',
             '113183203',
@@ -93,298 +93,191 @@ dd($bni->getToken());
         );
 ```
 
-#### Get In House Inquiry
-```php
-{   
-"clientId" : "IDBNI" + BASE64(clientName),
-"signature" :"[SIGNATURE]",
-"accountNo" : "115471119"
-}
-```
-
-#### Do Payment
-```php
-{      
-"clientId" : "IDBNI" + BASE64(clientName),
-"signature" : "[SIGNATURE]",
-"customerReferenceNumber" : "(customerReferenceNumber)",
-"paymentMethod" : "0",
-"debitAccountNo" : "(debitAccountNo)",
-"creditAccountNo" : "(creditAccountNo)",
-"valueDate" : "(valueDate)",
-"valueCurrency" : "(valueCurrency)",
-"valueAmount" : "(valueAmount)",
-"remark" : "?",
-"beneficiaryEmailAddress":"",
-"beneficiaryName":"(beneficiaryName)",
-"beneficiaryAddress1":"(Address1)",
-"beneficiaryAddress2":"",
-"destinationBankCode":"(destinationBankCode)",
-"chargingModelId":"OUR" 
-}
-```
-
 #### Get Payment Status
 ```php
-{
-"clientId": "IDBNI" + BASE64(clientName),
-"signature": "[SIGNATURE]",
-"customerReferenceNumber": "(customerReferenceNumber)"
-}
+dd($bni->getToken());
+        $ogp = new OneGatePayment($bni);
+return $ogp->getPaymentStatus('20170227000000000020');
 ```
 
 #### Get Inter Bank Inquiry
 ```php
-{
-"clientId": "IDBNI" + BASE64(clientName),
-"signature": "[SIGNATURE]",
-"customerReferenceNumber": "(customerReferenceNumber)",
-"accountNum": "(accountNum)",
-"destinationBankCode": "(BankCode)",
-"destinationAccountNum": "(destinationAccountNum)"
-}
+dd($bni->getToken());
+        $ogp = new OneGatePayment($bni);
+return $ogp->getInterBankInquiry(
+            '20180930112233003',
+            '0115476117',
+            '014',
+            '01400000'
+        );
 ```
 
 #### Get Inter Bank Payment
 ```php
-{
-"clientId": "IDBNI" + BASE64(clientName),
-"signature": "[SIGNATURE]",
-"customerReferenceNumber": "(customerReferenceNumber)",
-"amount": "(amount)",
-"destinationAccountNum": "(destinationAccountNum)",
-"destinationAccountName": "(destinationAccountName)",
-"destinationBankCode": "(bankcode)",
-"destinationBankName": "(bankname)",
-"accountNum": "(accountNum)",
-"retrievalReffNum": "(retrievalReffNum)"
-}
+dd($bni->getToken());
+        $ogp = new OneGatePayment($bni);
+return $ogp->getInterBankPayment(
+            '20180930112233005',
+            12007,
+            '01400000',
+            'Bpk HANS',
+            '014',
+            'BCA',
+            '0316031099',
+            '100000000097'
+        );
 ```
 
 #### Hold Amount
 ```php
-{
-"clientId": "IDBNI" + BASE64(clientName),
-"signature": "[SIGNATURE]",
-"customerReferenceNumber": "(customerReferenceNumber)",
-"amount": "(amount)",
-"destinationAccountNum": "(destinationAccountNum)",
-"destinationAccountName": "(destinationAccountName)",
-"destinationBankCode": "(destinationBankCode)",
-"destinationBankName": "(destinationBankName)",
-"accountNum": "(accountNum)",
-"retrievalReffNum": "(retrievalReffNum)"
-}
+dd($bni->getToken());
+        $ogp = new OneGatePayment($bni);
+return $ogp->holdAmount(
+            '20181001112233009',
+            12007,
+            '0115476151',
+            'testHold'
+        );
 ```
 
 #### Hold Amount Release
 ```php
-{
-{
-"clientId": "IDBNI" + BASE64(clientName),
-"signature": "M4+FEsYOQluwIldqTqRti6oK3EhtGcTtrQZVtNrNZHxGz71kzXBoRCVgGuT8rq/jSE7c/sUXnSl/lqOPSvechI6HX1RpatHudd5mmLe2kcX38a2jg3L46dDuKC92cVrRmuPdvpOIH24J/gsNjrHHsgN3eEq8tmwKxQhgTkoZ4+Y=",
-"customerReferenceNumber": "(customerReferenceNumber)",
-"amount": (amount),
-"accountNo": "(accountNo)",
-"bankReference": "(bankReference)",
-"holdTransactionDate": "(holdTransactionDate)"
-}
+dd($bni->getToken());
+        $ogp = new OneGatePayment($bni);
+        return $ogp->holdAmountRelease(
+            '20181001112233010',
+            12007,
+            '0115476151',
+            '657364',
+            '31052010'
+        );
 ```
 
 ### 2.2.B Snap BI
 
 Create `One Gate Payment` class object
 ```php
-{
-X-SIGNATURE: (your_signature)
-X-TIMESTAMP: (timedate)
-X-CLIENT-KEY: (your_clientkey)
-{
- "grantType": "client_credentials",
- "additionalInfo": {}
-}
-}
+//snap
+$bni = new Bni(
+            false,
+            '{your-app-name}',
+            '{your-api-secret}',
+            '{your-api-key}',
+            '{your-client-secret}',
+            '{your-client-id}'
+        );
 ```
 
 Available methods for `Snap BI` class
 #### Balance Inquiry
 ```php
- "partnerReferenceNo": "(partnerReferenceNo)",
- "accountNo": "(accountnumber)"
-}
-});
+$token = $snap->balanceInquiry(
+'202010290000000000002',
+ '0115476117'
+ );
 ```
 
 #### Bank Statement
 ```php
-{
- "partnerReferenceNo": "(partnerReferenceNo)",
- "accountNo": "(accountNo)",
- "fromDateTime": "(datetime)",
- "toDateTime": "(dataetime)"
-}
-});
+$token = $snap->bankStatement(
+'202010290000000000002',
+'0115476117',
+'2010-01-01T12:08:56+07:00',
+'2011-01-01T12:08:56+07:00'
+);
 ```
 
 #### Internal Account Inquiry
 ```php
- "partnerReferenceNo": "(partnerReferenceNo)",
- "beneficiaryAccountNo": "(beneficiaryAccountNo)"
-});
+$token = $snap->internalaccountinquiry(
+ '2020102900000000000001',
+ '0115476151'
+);
 ```
 
 #### Transaction Status Inquiry
 ```php
-{
-{
-"originalPartnerReferenceNo": "(originalPartnerReferenceNo)",
- "originalReferenceNo": "(originalReferenceNo)",
- "originalExternalId": "(originalExternalId)",
- "serviceCode": "(serviceCode)",
- "transactionDate": "",
- "amount": {
- "value": "(value)",
- "currency": "IDR",
- },
- "additionalInfo": {
- "deviceId": "(iddevice",
- "channel": "mobilephone"
- }
-}
+$token = $snap->transactionstatusinquiry(
+ '20211213100434',
+ '20211220141520',
+ '0211220141520',
+ '36',
+ '2021-12-20',
+ '12500.00',
+ 'IDR',
+);
 ```
 
 #### Transfer Intra Bank
 ```php
-{
- "partnerReferenceNo": "(partnerReferenceNo)",
- "amount": {
- "value": "(value)",
- "currency": "IDR"
- },
- "beneficiaryAccountNo": "(beneficiaryAccountNo)",
- "beneficiaryEmail": "",
- "currency": "IDR",
- "customerReference": "14045",
- "feeType": "",
- "remark": "Already One Year",
- "sourceAccountNo": "(sourceAccountNo)",
- "transactionDate": "(date)",
- "additionalInfo": {
- "deviceId": "(iddevice)",
- "channel": "mobilephone"
- }
-}
-
+$token = $snap->transactionstatusinquiry(
+ '202201911020300006',
+ '12500',
+ 'IDR',
+ '0115476117',
+ '',
+ 'IDR',
+ '14045',
+ '',
+ 'Already One Year',
+ '0115476151'
+);
 ```
 
 #### Transfer RTGS
 ```php
-{{
-{
- "partnerReferenceNo": "(partnerReferenceNo)",
- "amount": {
- "value": "150005001",
- "currency": "IDR"
- },
- "beneficiaryAccountName": "(accountname)",
- "beneficiaryAccountNo": "(accountno)",
- "beneficiaryAddress": "(Andress)",
- "beneficiaryBankCode": "(bankcode)",
- "beneficiaryBankName": "(bankname)",
- "beneficiaryCustomerResidence": "1",
- "beneficiaryCustomerType": "1",
- "beneficiaryEmail": "",
- "currency": "IDR",
- "customerReference": "(customerReference)",
- "feeType": "OUR",
- "kodepos": "(poscode)",
- "recieverPhone": "",
- "remark": "Already One Year",
- "senderCustomerResidence": "1",
- "senderCustomerType": "1",
- "senderPhone": "",
- "sourceAccountNo": "(sourceAccountNo)",
- "transactionDate": "(transactionDate)",
- "additionalInfo": {
- "deviceId": "(iddevice)",
- "channel": "mobilephone"
- }
-}
-
+$token = $snap->transferrtgs(
+'202201911020300011',
+ '150005001',
+ 'IDR',
+ 'SAN',
+ '3333333333',
+ 'CENAIDJA',
+ '1',
+ '1',
+ '202201911020300006',
+ '0115476151',
+ '2022-01-25'
+);
 ```
 
 #### Transfer SKNBI
 ```php
-{
- "partnerReferenceNo": "(partnerReferenceNo)",
- "amount": {
- "value": "(value)",
- "currency": "IDR"
- },
- "beneficiaryAccountName": "(accountname",
- "beneficiaryAccountNo": "(acccountno)",
- "beneficiaryAddress": "(address)",
- "beneficiaryBankCode": "(bankcode)",
- "beneficiaryBankName": "(bankname)",
- "beneficiaryCustomerResidence": "1",
- "beneficiaryCustomerType": "1",
- "beneficiaryEmail": "",
- "currency": "IDR",
- "customerReference": "(customerReference)",
- "feeType": "OUR",
- "kodepos": "(poscode)",
- "recieverPhone": "",
- "remark": "Already One Year",
- "senderCustomerResidence": "1",
- "senderCustomerType": "1",
- "senderPhone": "",
- "sourceAccountNo": "(sourceAccountNo)"
- "transactionDate": "(transactionDate)",
- "additionalInfo": {
- "deviceId": "(iddevice)",
- "channel": "mobilephone"
- }
-}
+$token = $snap->transfersknbi(
+'202201911020300011',
+ '150005001',
+ 'IDR',
+ 'SAN',
+ '3333333333',
+ 'CENAIDJA',
+ '1',
+ '1',
+ '202201911020300006',
+ '0115476151',
+ '2022-01-25'
+);
 ```
 
 #### External Account Inquiry
 ```php
-{
-  beneficiaryBankCode: '002',
-  beneficiaryAccountNo: '888801000157508',
-  partnerReferenceNo: '2020102900000000000001', // optional
-  additionalInfo: {
-    deviceId: '123456', // optinal
-    channel: 'mobilephone' // optinal
-  }
-});
+$token = $snap->externalaccountinquiry(
+'002',
+'888801000157508'
+);
 ```
 
 #### Transfer Inter Bank
 ```php
-{
- "partnerReferenceNo": "(partnerReferenceNo)",
- "amount": {
- "value": "(value)",
- "currency": "IDR"
- },
- "beneficiaryAccountName": "(AccountName)",
- "beneficiaryAccountNo": "(AccountNo)",
- "beneficiaryAddress": "(Address)",
- "beneficiaryBankCode": "(bankcode)",
- "beneficiaryBankName": "(bankname)",
- "beneficiaryEmail": "(email)",
- "currency": "IDR",
- "customerReference": "(customerReference)",
- "sourceAccountNo": "(sourceAccountNo)",
- "transactionDate": "(transactionDate)",
- "feeType": "OUR",
- "additionalInfo": {
- "deviceId": "(iddevice)
- "channel": "mobilephone"
- }
-}
-
+$token = $snap->transferinterbank(
+'2020102900000000000001',
+'12345678.00',
+'IDR',
+'Yories Yolanda',
+'888801000003301',
+'002',
+'888801000157508',
+'2019-07-03T12:08:56-07:00'
+);
 ```
 
 ## Get help
