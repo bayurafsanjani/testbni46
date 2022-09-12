@@ -127,7 +127,7 @@ return $ogp->holdAmount(
 12007,
 '0115476151',
 'testHold'
-        );
+ );
 ```
 
 #### Hold Amount Release
