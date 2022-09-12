@@ -30,8 +30,7 @@ We have 2 API products you can use:
 Get your client key and server key from [Menu - Applications](https://digitalservices.bni.co.id/en/profile-menu/apps)
 Create API client object
 
-```javascript
-  // Create Core API instance
+```php
   public $prod;
     public $appName;
     public $clientId;
@@ -44,11 +43,7 @@ Create API client object
 
 Create `One Gate Payment` class object
 ```php
-
-
-
-// Create Client instance
-  const client = new BNIClient({
+  {
   prod: false,
   clientId: '{your-client-id}',
   clientSecret: '{your-client-secret}',
@@ -57,13 +52,12 @@ Create `One Gate Payment` class object
   appName: '{your-app-name}'
 });
 
-const ogp = new OneGatePayment(client);
+
 ```
 
 Available methods for `One Gate Payment` class
 #### Get Balance
-```javascript
-// return as Promise of Object
+```php
 https://{BNIServer}:{port}/H2H/v2/getbalance?access_token=(Your_token)
 {	
 "clientId" : "IDBNI" + BASE64(clientName),
@@ -73,8 +67,7 @@ https://{BNIServer}:{port}/H2H/v2/getbalance?access_token=(Your_token)
 ```
 
 #### Get In House Inquiry
-```javascript
-// return as Promise of Object
+```php
 https://{BNIServer}:{port}/H2H/v2/getinhouseinquiry?access_token=(Your_token)
 {   
 "clientId" : "IDBNI" + BASE64(clientName),
@@ -84,8 +77,7 @@ https://{BNIServer}:{port}/H2H/v2/getinhouseinquiry?access_token=(Your_token)
 ```
 
 #### Do Payment
-```javascript
-// return as Promise of Object
+```php
 https://{BNIServer}:{port}/H2H/v2/dopayment?access_token=(your_token)
 {      
 "clientId" : "IDBNI" + BASE64(clientName),
@@ -108,8 +100,7 @@ https://{BNIServer}:{port}/H2H/v2/dopayment?access_token=(your_token)
 ```
 
 #### Get Payment Status
-```javascript
-// return as Promise of Object
+```php
 https://{BNIServer}:{port}/H2H/v2/getpaymentstatus?access_token=(Your_token)
 {
 "clientId": "IDBNI" + BASE64(clientName),
@@ -119,7 +110,7 @@ https://{BNIServer}:{port}/H2H/v2/getpaymentstatus?access_token=(Your_token)
 ```
 
 #### Get Inter Bank Inquiry
-```javascript
+```php
 https://{BNIServer}:{port}/H2H/v2/getinterbankinquiry?access_token=(your_token)
 {
 "clientId": "IDBNI" + BASE64(clientName),
@@ -132,7 +123,7 @@ https://{BNIServer}:{port}/H2H/v2/getinterbankinquiry?access_token=(your_token)
 ```
 
 #### Get Inter Bank Payment
-```javascript
+```php
 https://{BNIServer}:{port}/H2H/v2/getinterbankpayment?access_token=(your_token)
 {
 "clientId": "IDBNI" + BASE64(clientName),
@@ -149,8 +140,7 @@ https://{BNIServer}:{port}/H2H/v2/getinterbankpayment?access_token=(your_token)
 ```
 
 #### Hold Amount
-```javascript
-// return as Promise of Object
+```php
 https://{BNIServer}:{port}/H2H/v2/holdamount?access_token=(your_token)
 {
 "clientId": "IDBNI" + BASE64(clientName),
@@ -167,7 +157,7 @@ https://{BNIServer}:{port}/H2H/v2/holdamount?access_token=(your_token)
 ```
 
 #### Hold Amount Release
-```javascript
+```php
 https://{BNIServer}:{port}/H2H/v2/holdamountrelease?access_token=(your_token)
 {
 {
@@ -184,8 +174,7 @@ https://{BNIServer}:{port}/H2H/v2/holdamountrelease?access_token=(your_token)
 ### 2.2.B Snap BI
 
 Create `One Gate Payment` class object
-```javascript
-// Create Client instance
+```php
 {
 X-SIGNATURE: (your_signature)
 X-TIMESTAMP: (timedate_
@@ -199,8 +188,7 @@ X-CLIENT-KEY: (your_clientkey)
 
 Available methods for `Snap BI` class
 #### Balance Inquiry
-```javascript
-// return as Promise of Object
+```php
  "partnerReferenceNo": "(partnerReferenceNo)",
  "accountNo": "(accountnumber)"
 }
@@ -208,8 +196,7 @@ Available methods for `Snap BI` class
 ```
 
 #### Bank Statement
-```javascript
-// return as Promise of Object
+```php
 {
  "partnerReferenceNo": "(partnerReferenceNo)",
  "accountNo": "(accountNo)",
@@ -220,16 +207,14 @@ Available methods for `Snap BI` class
 ```
 
 #### Internal Account Inquiry
-```javascript
-// return as Promise of Object
+```php
  "partnerReferenceNo": "(partnerReferenceNo)",
  "beneficiaryAccountNo": "(beneficiaryAccountNo)"
 });
 ```
 
 #### Transaction Status Inquiry
-```javascript
-// return as Promise of Object
+```php
 {
 {
 "originalPartnerReferenceNo": "(originalPartnerReferenceNo)",
@@ -249,8 +234,7 @@ Available methods for `Snap BI` class
 ```
 
 #### Transfer Intra Bank
-```javascript
-// return as Promise of Object
+```php
 {
  "partnerReferenceNo": "(partnerReferenceNo)",
  "amount": {
@@ -274,9 +258,9 @@ Available methods for `Snap BI` class
 ```
 
 #### Transfer RTGS
-```javascript
-// return as Promise of Object
-const transferRTGS = await snap.transferRTGS{
+```php
+{{
+{
  "partnerReferenceNo": "202201911020300011",
  "amount": {
  "value": "150005001",
@@ -310,9 +294,8 @@ const transferRTGS = await snap.transferRTGS{
 ```
 
 #### Transfer SKNBI
-```javascript
-// return as Promise of Object
-const transferSKNBI = await snap.transferSKNBI{
+```php
+{
  "partnerReferenceNo": "(partnerReferenceNo)",
  "amount": {
  "value": "(value)",
@@ -345,9 +328,8 @@ const transferSKNBI = await snap.transferSKNBI{
 ```
 
 #### External Account Inquiry
-```javascript
-// return as Promise of Object
-const externalAccountInquiry = await snap.externalAccountInquiry({
+```php
+{
   beneficiaryBankCode: '002',
   beneficiaryAccountNo: '888801000157508',
   partnerReferenceNo: '2020102900000000000001', // optional
@@ -359,8 +341,7 @@ const externalAccountInquiry = await snap.externalAccountInquiry({
 ```
 
 #### Transfer Inter Bank
-```javascript
-// return as Promise of Object
+```php
 {
  "partnerReferenceNo": "(partnerReferenceNo)",
  "amount": {
