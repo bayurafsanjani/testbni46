@@ -153,13 +153,13 @@ $bni = new Bni(
   '{your-api-key}',
   '{your-client-secret}',
   '{your-client-id}'
-        );
+);
 //snap 
 bi$snap = new SnapBI(
   $bni = '{instance-of-bn-class}',
   $pathPrivateKey = '{your-path-private-key}',
   $chanel = '{your-chanel}'
-        );         
+);         
 ```
 
 Available methods for `Snap BI` class
