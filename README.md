@@ -8,7 +8,7 @@ Please visit [Digital Services](https://digitalservices.bni.co.id/en/) for more 
 ### 1.1 Using COMPOSER
 
 ```
-composer require bni/sdk --dev //contoh
+composer require bni/sdk --dev 
 ```
 
 ### 1.2 Manual Installation
@@ -31,7 +31,7 @@ Get your client key and server key from [Menu - Applications](https://digitalser
 Create API client object
 
 ```php
-  public $prod;
+    public $prod;
     public $appName;
     public $clientId;
     public $clientSecret;
