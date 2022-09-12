@@ -6,7 +6,7 @@ Please visit [Digital Services](https://digitalservices.bni.co.id/en/) for more 
 ## 1. Installation
 
 ### 1.1 Using COMPOSER
-download Composer [download](https://getcomposer.org/download/) and run command line
+[download](https://getcomposer.org/download/)  Composer and run command line
 
 ```
 composer require composer require bni-api/bni-php-client
