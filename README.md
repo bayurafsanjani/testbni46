@@ -1,4 +1,4 @@
-BNI API SDK - Node.js
+BNI API SDK - PHP
 ===============
 This is the Official PHP client / library for BNI API. 
 Please visit [Digital Services](https://digitalservices.bni.co.id/en/) for more information about our product and visit our documentation page at [API Documentation](https://digitalservices.bni.co.id/documentation/public/en) for more technical details.
@@ -31,7 +31,6 @@ Get your client key and server key from [Menu - Applications](https://digitalser
 Create API client object
 
 ```javascript
-  const { BNIClient } = require('bni-nodejs');
   // Create Core API instance
   public $prod;
     public $appName;
@@ -46,7 +45,7 @@ Create API client object
 Create `One Gate Payment` class object
 ```javascript
 
-const { BNIClient, OneGatePayment } = require('bni-nodejs');
+
 
 // Create Client instance
 const client = new BNIClient({
