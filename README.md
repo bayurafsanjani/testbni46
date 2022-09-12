@@ -6,7 +6,7 @@ Please visit [Digital Services](https://digitalservices.bni.co.id/en/) for more 
 ## 1. Installation
 
 ### 1.1 Using COMPOSER
-
+download Composer [download](https://getcomposer.org/download/) and run command line
 ```
 composer require bni/sdk --dev 
 ```
@@ -31,12 +31,20 @@ Get your client key and server key from [Menu - Applications](https://digitalser
 Create API client object
 
 ```php
-    public $prod;
-    public $appName;
-    public $clientId;
-    public $clientSecret;
-    public $apiKey;
-    public $apiSecret;});
+{
+private function init()
+    {
+        return new Bni(
+            false,
+            'Test Wawat', <!-- appName -->
+            'ff19bcb7-3a15-4d0b-97b1-f36f9cf9bdb2',<!-- apiSecret -->
+            'd227997a-3525-442d-b80e-2ab2e7d908f0',<!-- apiKey -->
+            '98c4277f-866d-46b0-ba83-d3e0e37e667e',<!--  clientSecret -->
+            'b3b58219-8a88-401f-89c0-f2dc5bb7ce21'<!--  clientId -->
+        );
+    }
+
+}
 ```
 
 ### 2.2.A One Gate Payment
@@ -57,8 +65,6 @@ private function init()
     }
 
 }
-
-
 ```
 
 Available methods for `One Gate Payment` class
