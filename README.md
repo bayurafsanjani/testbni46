@@ -1,6 +1,6 @@
 BNI API SDK - Node.js
 ===============
-This is the Official Node JS API client / library for BNI API. 
+This is the Official PHP client / library for BNI API. 
 Please visit [Digital Services](https://digitalservices.bni.co.id/en/) for more information about our product and visit our documentation page at [API Documentation](https://digitalservices.bni.co.id/documentation/public/en) for more technical details.
 
 ## 1. Installation
@@ -13,7 +13,7 @@ composer require bni/sdk --dev //contoh
 
 ### 1.2 Manual Installation
 
-If you are not using GIT, you can clone or [download](https://github.com/bni-api/bni-nodejs/archive/refs/heads/main.zip) this repository.
+If you are not using GIT, you can clone or [download](https://github.com/bni-api/bni-php.git) this repository.
 
 
 ## 2. Usage
@@ -67,6 +67,7 @@ Available methods for `One Gate Payment` class
 #### Get Balance
 ```javascript
 // return as Promise of Object
+https://{BNIServer}:{port}/H2H/v2/getbalance?access_token=(Your_token)
 {	
 "clientId" : "IDBNI" + BASE64(clientName),
 "signature" :"[SIGNATURE]",
@@ -77,6 +78,7 @@ Available methods for `One Gate Payment` class
 #### Get In House Inquiry
 ```javascript
 // return as Promise of Object
+https://{BNIServer}:{port}/H2H/v2/getinhouseinquiry?access_token=(Your_token)
 {   
 "clientId" : "IDBNI" + BASE64(clientName),
 "signature" :"[SIGNATURE]",
@@ -87,6 +89,7 @@ Available methods for `One Gate Payment` class
 #### Do Payment
 ```javascript
 // return as Promise of Object
+https://{BNIServer}:{port}/H2H/v2/dopayment?access_token=(your_token)
 {      
 "clientId" : "IDBNI" + BASE64(clientName),
 "signature" : "[SIGNATURE]",
@@ -110,6 +113,7 @@ Available methods for `One Gate Payment` class
 #### Get Payment Status
 ```javascript
 // return as Promise of Object
+https://{BNIServer}:{port}/H2H/v2/getpaymentstatus?access_token=(Your_token)
 {
 "clientId": "IDBNI" + BASE64(clientName),
 "signature": "[SIGNATURE]",
@@ -119,6 +123,7 @@ Available methods for `One Gate Payment` class
 
 #### Get Inter Bank Inquiry
 ```javascript
+https://{BNIServer}:{port}/H2H/v2/getinterbankinquiry?access_token=(your_token)
 {
 "clientId": "IDBNI" + BASE64(clientName),
 "signature": "[SIGNATURE]",
@@ -131,6 +136,7 @@ Available methods for `One Gate Payment` class
 
 #### Get Inter Bank Payment
 ```javascript
+https://{BNIServer}:{port}/H2H/v2/getinterbankpayment?access_token=(your_token)
 {
 "clientId": "IDBNI" + BASE64(clientName),
 "signature": "[SIGNATURE]",
@@ -148,23 +154,33 @@ Available methods for `One Gate Payment` class
 #### Hold Amount
 ```javascript
 // return as Promise of Object
-const holdAmount = await ogp.holdAmount({
-  customerReferenceNumber: '20170504153218296', // max 20 char client defined reference number
-  amount: '12007',
-  accountNo: '0115476151',
-  detail: '' // optional
-});
+https://{BNIServer}:{port}/H2H/v2/holdamount?access_token=(your_token)
+{
+"clientId": "IDBNI" + BASE64(clientName),
+"signature": "[SIGNATURE]",
+"customerReferenceNumber": "20170227000000000021",
+"amount": "10000",
+"destinationAccountNum": "3333333333",
+"destinationAccountName": "BENEFICIARY NAME 1 UNTIL HERE1BENEFICIARY NAME 2(OPT) UNTIL HERE2",
+"destinationBankCode": "014",
+"destinationBankName": "BCA",
+"accountNum": "115471119",
+"retrievalReffNum": "100000000024"
+}
 ```
 
 #### Hold Amount Release
 ```javascript
+https://{BNIServer}:{port}/H2H/v2/holdamountrelease?access_token=(your_token)
+{
 {
 "clientId": "IDBNI" + BASE64(clientName),
-"signature":"M4+FEsYOQluwIldqTqRti6oK3EhtGcTtrQZVtNrNZHxGz71kzXBoRCVgGuT8rq/jSE7c/sUXnSl/lqOPSvechI6HX1RpatHudd5mmLe2kcX38a2jg3L46dDuKC92cVrRmuPdvpOIH24J/gsNjrHHsgN3eEq8tmwKxQhgTkoZ4+Y=",
-"customerReferenceNumber": "20170504153218296",
+"signature": "M4+FEsYOQluwIldqTqRti6oK3EhtGcTtrQZVtNrNZHxGz71kzXBoRCVgGuT8rq/jSE7c/sUXnSl/lqOPSvechI6HX1RpatHudd5mmLe2kcX38a2jg3L46dDuKC92cVrRmuPdvpOIH24J/gsNjrHHsgN3eEq8tmwKxQhgTkoZ4+Y=",
+"customerReferenceNumber": "20170504153218298",
 "amount": 12007,
 "accountNo": "0115476151",
-"detail": "testHold"
+"bankReference": "513668",
+"holdTransactionDate": "31052010"
 }
 ```
 
