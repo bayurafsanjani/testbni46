@@ -55,7 +55,7 @@ $bni = new Bni(
 '{your-client-id}'
 );
 dd($bni->getToken());
-        $ogp = new OneGatePayment($bni);
+$ogp = new OneGatePayment($bni);
 ```
 
 Available methods for `One Gate Payment` class
