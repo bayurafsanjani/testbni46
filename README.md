@@ -61,19 +61,16 @@ dd($bni->getToken());
 Available methods for `One Gate Payment` class
 #### Get Balance
 ```php
-$ogp = new OneGatePayment($bni);
 return $ogp->getBalance('115471119');
 ```
 
 #### Get In House Inquiry
 ```php
-$ogp = new OneGatePayment($bni);
 return $ogp->getInHouseInquiry('115471119');
 ```
 
 #### Do Payment
 ```php
-return $ogp->doPayment(
 '20170227000000000020',
 '0',
 '113183203',
